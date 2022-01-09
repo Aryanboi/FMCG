@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from annotated_text import annotated_text
 
 st.set_page_config(page_title='Trade Data Presentation', page_icon='LV.jpg')
 sidebar= st.sidebar
