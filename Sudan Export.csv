@@ -4,25 +4,25 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 1,Animal Products,101,Live animals,10106,Other Animals,2019,10114350,-0.953476637,-207289323,217403673,285134369,148171665,-95.3476637,-207289323,-96.45277767,-275020019,-93.17389732,-138057315
 1,Animal Products,102,Meat and edible meat offal,10201,Bovine Meat,2019,35803401,-0.56814592,-47102846,82906247,130490830,7042749,-56.81459203,-47102846,-72.5625157,-94687429,408.3725261,28760652
 1,Animal Products,102,Meat and edible meat offal,10202,Frozen Bovine Meat,2019,150455,-0.662276823,-295043,445498,1859935,2552553,-66.22768228,-295043,-91.91073882,-1709480,-94.10570515,-2402098
-1,Animal Products,102,Meat and edible meat offal,10203,Pig Meat,2019,46084,-0.465649386,-40159,86243,0,12034,-46.5649386,-40159,100,46084,282.9483131,34050
+1,Animal Products,102,Meat and edible meat offal,10203,Pig Meat,2019,46084,-0.465649386,-40159,86243,0.1,12034,-46.5649386,-40159,100,46084,282.9483131,34050
 1,Animal Products,102,Meat and edible meat offal,10204,Sheep and Goat Meat,2019,11750316,-0.631738049,-20157178,31907494,57857334,120932125,-63.17380487,-20157178,-79.69087895,-46107018,-90.28354459,-109181809
 1,Animal Products,102,Meat and edible meat offal,10210,Preserved Meat,2019,275215,9.474803989,248941,26274,24271,1,947.4803989,248941,1033.925261,250944,27521400,275214
 1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10302,Non-fillet Fresh Fish,2019,3367664,-0.152029277,-603775,3971439,1764671,1338746,-15.2029277,-603775,90.83806557,1602993,151.5536181,2028918
-1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10304,Fish Fillets,2019,10465,33.42434211,10161,0,304,0,100,10465,3342.434211,10161,100,10465
+1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10304,Fish Fillets,2019,10465,33.42434211,10161,0.1,304,0.1,100,10465,3342.434211,10161,100,10465
 1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10305,Processed Fish,2019,89382,0.170503654,13020,76362,135510,88926,17.05036536,13020,-34.04029223,-46128,0.512785912,456
-1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10306,Crustaceans,2019,480,-0.999890383,-4378392,4378872,82035,0,-99.98903827,-4378392,-99.41488389,-81555,100,480
+1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10306,Crustaceans,2019,480,-0.999890383,-4378392,4378872,82035,0.1,-99.98903827,-4378392,-99.41488389,-81555,100,480
 1,Animal Products,103,"Fish and crustaceans, molluscs and other aquatic invertebrates",10307,Molluscs,2019,23671,2.750158428,17359,6312,207502,79042,275.0158428,17359,-88.59239911,-183831,-70.05263025,-55371
 1,Animal Products,104,Dairy products and other edible products of animal origin,10402,Concentrated Milk,2019,6608,-0.178007215,-1431,8039,3030,71841,-17.80072148,-1431,118.0858086,3578,-90.80190977,-65233
-1,Animal Products,104,Dairy products and other edible products of animal origin,10404,Whey,2019,588,587,587,1,0,0,58700,587,100,588,100,588
-1,Animal Products,104,Dairy products and other edible products of animal origin,10405,Butter,2019,42,-0.522727273,-46,88,0,0,-52.27272727,-46,100,42,100,42
+1,Animal Products,104,Dairy products and other edible products of animal origin,10404,Whey,2019,588,587,587,1,0.1,0.1,58700,587,100,588,100,588
+1,Animal Products,104,Dairy products and other edible products of animal origin,10405,Butter,2019,42,-0.522727273,-46,88,0.1,0.1,-52.27272727,-46,100,42,100,42
 1,Animal Products,104,Dairy products and other edible products of animal origin,10406,Cheese,2019,240337,10.56522785,219556,20781,1450,8892,1056.522785,219556,16474.96552,238887,2602.845254,231445
-1,Animal Products,104,Dairy products and other edible products of animal origin,10407,Eggs,2019,954848,3.646891927,749367,205481,0,193498,364.6891927,749367,100,954848,393.4665991,761350
+1,Animal Products,104,Dairy products and other edible products of animal origin,10407,Eggs,2019,954848,3.646891927,749367,205481,0.1,193498,364.6891927,749367,100,954848,393.4665991,761350
 1,Animal Products,104,Dairy products and other edible products of animal origin,10409,Honey,2019,50179,0.156278084,6782,43397,15831,21059,15.62780837,6782,216.9667109,34348,138.2781709,29120
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10504,Animal Organs,2019,7537,-0.897223662,-65797,73334,1,28942,-89.72236616,-65797,753600,7536,-73.95826135,-21405
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10506,Processed Bones,2019,765,764,764,1,80,656335,76400,764,856.25,685,-99.88344367,-655570
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10507,Raw Bones,2019,12542,0.255706848,2554,9988,9262,27174,25.57068482,2554,35.4135176,3280,-53.84558769,-14632
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10508,Coral and Shells,2019,105555,-0.120008337,-14395,119950,269956,329909,-12.00083368,-14395,-60.89918357,-164401,-68.00481345,-224354
-2,Vegetable Products,206,Trees and other live plants,20601,Bulbs and Roots,2019,85880,-0.692085949,-193029,278909,0,760221,-69.20859492,-193029,100,85880,-88.70328497,-674341
+2,Vegetable Products,206,Trees and other live plants,20601,Bulbs and Roots,2019,85880,-0.692085949,-193029,278909,0.1,760221,-69.20859492,-193029,100,85880,-88.70328497,-674341
 2,Vegetable Products,206,Trees and other live plants,20603,Cut Flowers,2019,16048,3.162905318,12193,3855,622,40697,316.2905318,12193,2480.064309,15426,-60.56711797,-24649
 2,Vegetable Products,206,Trees and other live plants,20604,Foliage,2019,79,-0.543352601,-94,173,6846,3703,-54.33526012,-94,-98.84604148,-6767,-97.86659465,-3624
 2,Vegetable Products,207,Vegetables and certain roots and tubers; edible,20701,Potatoes,2019,55861,1052.981132,55808,53,257952,232280,105298.1132,55808,-78.34442067,-202091,-75.9510074,-176419
@@ -40,25 +40,25 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 2,Vegetable Products,208,"Fruit and nuts, edible; peel of citrus fruit or melons",20807,Melons,2019,1791044,0.305663568,419294,1371750,1134922,1097188,30.56635684,419294,57.81207872,656122,63.23948129,693856
 2,Vegetable Products,208,"Fruit and nuts, edible; peel of citrus fruit or melons",20810,Other Fruits,2019,72489,-0.390418447,-46427,118916,1739852,26267,-39.04184466,-46427,-95.83361113,-1667363,175.9698481,46222
 2,Vegetable Products,208,"Fruit and nuts, edible; peel of citrus fruit or melons",20813,Dried Fruits,2019,528,-0.988490463,-45347,45875,83302,1155,-98.84904632,-45347,-99.36616168,-82774,-54.28571429,-627
-2,Vegetable Products,209,"Coffee, tea, mate and spices",20901,Coffee,2019,332,-0.994401632,-58971,0,0,59303,100,332,100,332,-99.44016323,-58971
+2,Vegetable Products,209,"Coffee, tea, mate and spices",20901,Coffee,2019,332,-0.994401632,-58971,0.1,0.1,59303,100,332,100,332,-99.44016323,-58971
 2,Vegetable Products,209,"Coffee, tea, mate and spices",20902,Tea,2019,13369,4.989695341,11137,2232,12206,193278,498.9695341,11137,9.528100934,1163,-93.08302031,-179909
 2,Vegetable Products,209,"Coffee, tea, mate and spices",20904,Pepper,2019,2588,-0.758085623,-8110,10698,27242,14101,-75.80856235,-8110,-90.49996329,-24654,-81.64669172,-11513
 2,Vegetable Products,209,"Coffee, tea, mate and spices",20909,Spice Seeds,2019,802452,0.454644991,250804,551648,434213,423458,45.4644991,250804,84.80607444,368239,89.4997851,378994
 2,Vegetable Products,209,"Coffee, tea, mate and spices",20910,Spices,2019,12897,-0.967524488,-384233,397130,44880,114718,-96.75244882,-384233,-71.26336898,-31983,-88.75764919,-101821
 2,Vegetable Products,210,Cereals,21005,Corn,2019,2611940,1.849043062,1695162,916778,5034410,399621,184.9043062,1695162,-48.1182502,-2422470,553.6042901,2212319
-2,Vegetable Products,210,Cereals,21006,Rice,2019,173543,-0.904877767,-1650878,1824421,0,0,-90.48777667,-1650878,100,173543,100,173543
+2,Vegetable Products,210,Cereals,21006,Rice,2019,173543,-0.904877767,-1650878,1824421,0.1,0.1,-90.48777667,-1650878,100,173543,100,173543
 2,Vegetable Products,210,Cereals,21007,Sorghum,2019,33531096,0.461963168,10595432,22935664,31426569,5601735,46.19631679,10595432,6.696648941,2104527,498.5841172,27929361
 2,Vegetable Products,210,Cereals,21008,Buckwheat,2019,121372,5.46111259,102587,18785,408715,249122,546.111259,102587,-70.30400157,-287343,-51.2800957,-127750
 2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21101,Wheat Flours,2019,2348603,21.0480558,2242081,106522,689,462,2104.80558,2242081,340771.2627,2347914,508255.6277,2348141
 2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21102,Cereal Flours,2019,3173,-0.849048525,-17847,21020,57554,2440,-84.90485252,-17847,-94.48691663,-54381,30.04098361,733
-2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21103,Cereal Meal and Pellets,2019,13331,58.24888889,13106,225,25516,0,5824.888889,13106,-47.75435021,-12185,100,13331
+2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21103,Cereal Meal and Pellets,2019,13331,58.24888889,13106,225,25516,0.1,5824.888889,13106,-47.75435021,-12185,100,13331
 2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21104,Processed Cereals,2019,407321,4.249726121,329732,77589,69299,756,424.9726121,329732,487.7732723,338022,53778.43915,406565
-2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21105,Potato Flours,2019,12,11,11,0,1,0,100,12,1100,11,100,12
+2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21105,Potato Flours,2019,12,11,11,0.1,1,0.1,100,12,1100,11,100,12
 2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21106,Legume Flours,2019,24369,1.637623119,15130,9239,20122,11387,163.7623119,15130,21.10625186,4247,114.0072012,12982
-2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21108,Starches,2019,938,-0.972704787,-33427,34365,0,13,-97.27047868,-33427,100,938,7115.384615,925
-2,Vegetable Products,212,Oil seeds and oleaginous fruits,21201,Soybeans,2019,41384,195.1327014,41173,211,0,10800,19513.27014,41173,100,41384,283.1851852,30584
+2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21108,Starches,2019,938,-0.972704787,-33427,34365,0.1,13,-97.27047868,-33427,100,938,7115.384615,925
+2,Vegetable Products,212,Oil seeds and oleaginous fruits,21201,Soybeans,2019,41384,195.1327014,41173,211,0.1,10800,19513.27014,41173,100,41384,283.1851852,30584
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21202,Ground Nuts,2019,124758415,0.936609643,60337371,64421044,13080354,2351134,93.66096427,60337371,853.7846988,111678061,5206.308147,122407281
-2,Vegetable Products,212,Oil seeds and oleaginous fruits,21204,Linseed,2019,5582,-0.927763543,-71692,0,0,77274,100,5582,100,5582,-92.77635427,-71692
+2,Vegetable Products,212,Oil seeds and oleaginous fruits,21204,Linseed,2019,5582,-0.927763543,-71692,0.1,0.1,77274,100,5582,100,5582,-92.77635427,-71692
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21207,Other Oily Seeds,2019,742356658,0.069613724,48314836,694041822,442167105,431859566,6.961372423,48314836,67.89052139,300189553,71.89769926,310497092
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21208,Oil Seed Flower,2019,18562,-0.427487508,-13860,32422,10273,337050,-42.74875085,-13860,80.68723839,8289,-94.49280522,-318488
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21209,Sowing Seeds,2019,432109,-0.597413475,-641223,1073332,596758,1063818,-59.7413475,-641223,-27.59058111,-164649,-59.38130394,-631709
@@ -70,13 +70,13 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 2,Vegetable Products,213,"Lac; gums, resins and other vegetable saps and extracts",21302,Vegetable Saps,2019,650428,20.52380952,620209,30219,88733,259707,2052.380952,620209,633.0170286,561695,150.4468497,390721
 2,Vegetable Products,214,Vegetable plaiting materials,21401,Vegetable Plaiting Materials,2019,61846,-0.438335513,-48266,110112,61920,17674,-43.83355129,-48266,-0.119509044,-74,249.9264456,44172
 2,Vegetable Products,214,Vegetable plaiting materials,21404,Other Vegetable Products,2019,697706,-0.265096104,-251678,949384,1150782,1233430,-26.50961044,-251678,-39.37114067,-453076,-43.43367682,-535724
-3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31502,"Bovine, Sheep, and Goat Fat",2019,58304,0.037733162,2120,0,56184,9547,100,58304,3.773316247,2120,510.7049335,48757
-3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31506,Other Animal Fats,2019,6,-0.999864706,-44342,0,44348,630,100,6,-99.98647064,-44342,-99.04761905,-624
+3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31502,"Bovine, Sheep, and Goat Fat",2019,58304,0.037733162,2120,0.1,56184,9547,100,58304,3.773316247,2120,510.7049335,48757
+3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31506,Other Animal Fats,2019,6,-0.999864706,-44342,0.1,44348,630,100,6,-99.98647064,-44342,-99.04761905,-624
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31508,Ground Nut Oil,2019,23148819,0.972637399,11413860,11734959,28072976,2206528,97.26373991,11413860,-17.54055929,-4924157,949.1060616,20942291
-3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31510,Olive Oil,2019,10588,1.687991876,6649,0,3939,0,100,10588,168.7991876,6649,100,10588
+3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31510,Olive Oil,2019,10588,1.687991876,6649,0.1,3939,0.1,100,10588,168.7991876,6649,100,10588
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31515,Other Pure Vegetable Oils,2019,1048331,1.658147896,653947,394384,1386996,8172156,165.8147896,653947,-24.41715766,-338665,-87.17191644,-7123825
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31521,Waxes,2019,374826,3.402880233,289694,85132,321300,317993,340.2880233,289694,16.65919701,53526,17.872406,56833
-4,Foodstuffs,416,"Meat, fish or crustaceans, molluscs or other aquatic invertebrates",41605,Processed Crustaceans,2019,557996,2.781639264,410442,147554,0,0,278.1639264,410442,100,557996,100,557996
+4,Foodstuffs,416,"Meat, fish or crustaceans, molluscs or other aquatic invertebrates",41605,Processed Crustaceans,2019,557996,2.781639264,410442,147554,0.1,0.1,278.1639264,410442,100,557996,100,557996
 4,Foodstuffs,417,Sugars and sugar confectionery,41703,Molasses,2019,1198327,-0.940831674,-19054519,20252846,28853297,7876485,-94.08316737,-19054519,-95.84682818,-27654970,-84.78601813,-6678158
 4,Foodstuffs,417,Sugars and sugar confectionery,41704,Confectionery Sugar,2019,60370,-0.39313825,-39109,99479,74902,177450,-39.31382503,-39109,-19.4013511,-14532,-65.97914906,-117080
 4,Foodstuffs,419,"Preparations of cereals, flour, starch or milk; pastrycooks' products",41902,Pasta,2019,346,-0.977391532,-14958,15304,60759,269,-97.73915316,-14958,-99.43053704,-60413,28.62453532,77
@@ -86,18 +86,18 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 4,Foodstuffs,420,"Preparations of vegetables, fruit, nuts or other parts of plants",42008,Other Processed Fruits and Nuts,2019,335164,-0.29033228,-137119,472283,13858770,2856528,-29.03322796,-137119,-97.5815747,-13523606,-88.266735,-2521364
 4,Foodstuffs,420,"Preparations of vegetables, fruit, nuts or other parts of plants",42009,Fruit Juice,2019,3517,-0.996496241,-1000262,1003779,318564,190321,-99.64962407,-1000262,-98.89598322,-315047,-98.1520694,-186804
 4,Foodstuffs,421,Miscellaneous edible preparations,42101,Coffee and Tea Extracts,2019,4899,-0.928344718,-63470,68369,2494,2872,-92.83447176,-63470,96.43143545,2405,70.57799443,2027
-4,Foodstuffs,421,Miscellaneous edible preparations,42103,Sauces and Seasonings,2019,102,0.545454545,36,0,0,66,100,102,100,102,54.54545455,36
+4,Foodstuffs,421,Miscellaneous edible preparations,42103,Sauces and Seasonings,2019,102,0.545454545,36,0.1,0.1,66,100,102,100,102,54.54545455,36
 4,Foodstuffs,421,Miscellaneous edible preparations,42104,Soups and Broths,2019,101191,-0.10108377,-11379,112570,79805,73953,-10.10837701,-11379,26.79781969,21386,36.83150109,27238
 4,Foodstuffs,421,Miscellaneous edible preparations,42106,Other Edible Preparations,2019,272532,-0.180520016,-60035,332567,643282,1451349,-18.05200155,-60035,-57.63413246,-370750,-81.22215952,-1178817
 4,Foodstuffs,422,"Beverages, spirits and vinegar",42201,Water,2019,2211,-0.980611726,-111827,114038,234541,84345,-98.06117259,-111827,-99.05730768,-232330,-97.37862351,-82134
 4,Foodstuffs,422,"Beverages, spirits and vinegar",42202,Flavored Water,2019,2406,-0.999043177,-2512165,2514571,2047414,4352399,-99.90431767,-2512165,-99.88248591,-2045008,-99.94472014,-4349993
-4,Foodstuffs,422,"Beverages, spirits and vinegar",42204,Wine,2019,21,-0.995342648,-4488,0,4509,0,100,21,-99.5342648,-4488,100,21
+4,Foodstuffs,422,"Beverages, spirits and vinegar",42204,Wine,2019,21,-0.995342648,-4488,0.1,4509,0.1,100,21,-99.5342648,-4488,100,21
 4,Foodstuffs,422,"Beverages, spirits and vinegar",42207,Alcohol > 80% ABV,2019,4641920,-0.491009172,-4477930,9119850,12443560,19201025,-49.10091723,-4477930,-62.69620591,-7801640,-75.82462395,-14559105
-4,Foodstuffs,422,"Beverages, spirits and vinegar",42208,Hard Liquor,2019,795,-0.981196783,-41485,42280,0,59556,-98.11967833,-41485,100,795,-98.6651219,-58761
+4,Foodstuffs,422,"Beverages, spirits and vinegar",42208,Hard Liquor,2019,795,-0.981196783,-41485,42280,0.1,59556,-98.11967833,-41485,100,795,-98.6651219,-58761
 4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42302,Bran,2019,11013605,-0.613387963,-17473881,28487486,71466,8166190,-61.33879627,-17473881,15310.97165,10942139,34.8683413,2847415
-4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42303,Starch Residue,2019,29016,,,0,0,0,100,29016,100,29016,100,29016
+4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42303,Starch Residue,2019,29016,,,0.1,0.1,0.1,100,29016,100,29016,100,29016
 4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42305,Ground Nut Meal,2019,39808497,0.685355314,16188257,23620240,14438894,7752846,68.53553139,16188257,175.7032291,25369603,413.4694666,32055651
-4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42306,Other Vegetable Residues,2019,312656,5.380604477,263655,49001,2708,0,538.0604477,263655,11445.64254,309948,100,312656
+4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42306,Other Vegetable Residues,2019,312656,5.380604477,263655,49001,2708,0.1,538.0604477,263655,11445.64254,309948,100,312656
 4,Foodstuffs,423,"Food industries, residues and wastes thereof; prepared animal fodder",42309,Animal Food,2019,428141,-0.760107199,-1356577,1784718,55608,23818,-76.0107199,-1356577,669.9269889,372533,1697.552271,404323
 4,Foodstuffs,424,Tobacco and manufactured tobacco substitutes,42401,Raw Tobacco,2019,6029,-0.506991577,-6200,12229,24033,97615,-50.69915774,-6200,-74.91366038,-18004,-93.82369513,-91586
 4,Foodstuffs,424,Tobacco and manufactured tobacco substitutes,42402,Rolled Tobacco,2019,420,-0.999578728,-996561,996981,4602,5528,-99.95787282,-996561,-90.87353325,-4182,-92.40231548,-5108

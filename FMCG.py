@@ -4,391 +4,763 @@ import plotly.express as px
 import plotly.graph_objects as go
 from annotated_text import annotated_text
 
+st.set_page_config(page_title='Trade Data Presentation', page_icon='LV.jpg')
 sidebar= st.sidebar
-st.markdown("<h1 style='text-align: center'><u>'Trade of FMCG Products'</u></h1>", unsafe_allow_html=True)
-option2= sidebar.radio('Select',('Import','Export'))
+st.markdown("<h1 style='text-align: center'><u>Trade of FMCG Products in</u></h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center'><u>'Northern African Countries'</u></h1>", unsafe_allow_html=True) 
+sidebar.image('Lever Bridge.jpeg')
 option1= st.selectbox('Select the Country', ('Morocco','Algeria','Egypt','Sudan','Tunisia','Libya'))
-option3= sidebar.radio('Select',('2019','Previous Year','Previous 3 Years', 'Previous 5 Years'))
-option4= sidebar.radio('Select', ('Animal Product','Vegetable Product','Animal and Vegetable Bi Product', 'Foodstuffs'))
-#----------------------------------------------------------------------------------------------------------------------------------------------
+option2= st.radio('Select',('Import','Export','Tariff'))
+option3= sidebar.radio('Select',('2019','2018','2016-2018', '2014-2018'))
 
-if option2=='Import':   
-    if option1== 'Morocco':
-        
+if option1=='Morocco': 
+    st.markdown("<h2 style='text-align: center'><u>Morocco</u></h1>", unsafe_allow_html=True) 
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
         df=pd.read_csv('Morocco Import.csv')
         df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
         df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
         st.dataframe(df)
 
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value', hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
         
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1', hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3', hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5', hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Morocco Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
 
         if option3== '2019':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value', color='Trade Value Growth(%)',color_continuous_scale='RdBu')
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
-        
-        if option3=='Previous Year':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 1', color='TradeValue Growth(%)Pre 1',color_continuous_scale='RdBu')
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:120], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(51), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:120], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(51), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option3=='Previous 3 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 3', color='TradeValue Growth(%)Pre 3',color_continuous_scale='RdBu')
+
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:120], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(51), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        if option3=='Previous 5 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 5', color='TradeValue Growth(%)Pre 5',color_continuous_scale='RdBu')
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
-
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:120], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(51), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-  #---------------------------------------------------------------------------------------------      
-        
-        if option4=='Animal Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.head(35), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
+    if option2=='Tariff':
+        st.markdown("<h3 style='text-align: center'>[Tariff]</h3>", unsafe_allow_html=True)
 
-            dt=pd.read_csv('Animal Morocco.csv')
-            dt.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Animal Products')
-            st.dataframe(dt)
-#-----------------------------------------------------------------------------------
+        da=pd.read_csv('Animal Morocco.csv')
+        da.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        da.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal Products')
+        st.dataframe(da)
+        st.markdown('---')
 
-        if option4=='Vegetable Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[36:112], x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
+        db=pd.read_csv('Vegetable Morocco.csv')
+        db.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        db.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Vegetable Products')
+        st.dataframe(db)
+        st.markdown('---')
 
-            dv=pd.read_csv('Vegetable Morocco.csv')
-            dv.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Vegetable Products')
-            st.dataframe(dv)
-#---------------------------------------------------------------------------------------
+        dc=pd.read_csv('Biproduct Morocco.csv')
+        dc.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dc.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal and Vegetable Bi Products')
+        st.dataframe(dc)
+        st.markdown('---')
 
-        if option4=='Animal and Vegetable Bi Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 1',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 3',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[112:131], x='HS2' ,y='Trade Value Previous 5',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-
-            dw=pd.read_csv('Biproduct Morocco.csv')
-            dw.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Animal and Vegetable Bi Products')
-            st.dataframe(dw)
-
-#--------------------------------------------------------------------------------------------------    
-        if option4=='Foodstuffs':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-
-            dx=pd.read_csv('Foodstuff Morocco.csv')
-            dx.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Foodstuffs Products')
-            st.dataframe(dx)
-#----------------------------------------------------------------------------------------
-
-    if option1=='Algeria':
+        dd=pd.read_csv('Foodstuff Morocco.csv')
+        dd.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dd.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Foodstuffs')
+        st.dataframe(dd)
+        st.markdown('---')
+#***********************************************************************************************************************************************
+#***********************************************************************************************************************************************
+if option1=='Algeria':  
+    st.markdown("<h2 style='text-align: center'><u>Algeria</u></h1>", unsafe_allow_html=True)
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
         df=pd.read_csv('Algeria Import.csv')
         df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
         df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
         st.dataframe(df)
 
-        
-
         if option3== '2019':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value', color='Trade Value Growth(%)',color_continuous_scale='RdBu')
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(48), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
         
-        if option3=='Previous Year':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 1', color='TradeValue Growth(%)Pre 1',color_continuous_scale='RdBu')
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(48), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option3=='Previous 3 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 3', color='TradeValue Growth(%)Pre 3',color_continuous_scale='RdBu')
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(48), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        if option3=='Previous 5 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 5', color='TradeValue Growth(%)Pre 5',color_continuous_scale='RdBu')
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
-
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550, template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(48), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-  #---------------------------------------------------------------------------------------------      
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Algeria Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
+
+        if option3=='2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(16), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[17:65], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[65:75], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(39), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(16), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[17:65], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[65:75], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(39), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option4=='Animal Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.head(30), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
 
-            dt=pd.read_csv('Animal Algeria.csv')
-            dt.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Animal Products')
-            st.dataframe(dt)
-#-----------------------------------------------------------------------------------
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale= 'RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(16), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[17:65], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[65:75], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(39), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        if option4=='Vegetable Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[31:102], x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(16), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[17:65], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[65:75], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(39), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-            dv=pd.read_csv('Vegetable Algeria.csv')
-            dv.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Vegetable Products')
-            st.dataframe(dv)
-#---------------------------------------------------------------------------------------
+    if option2=='Tariff':
+        st.markdown("<h3 style='text-align: center'>[Tariff]</h3>", unsafe_allow_html=True)
 
-        if option4=='Animal and Vegetable Bi Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 1',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 3',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[102:118], x='HS2' ,y='Trade Value Previous 5',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+        da=pd.read_csv('Animal Algeria.csv')
+        da.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        da.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal Products')
+        st.dataframe(da)
+        st.markdown('---')
 
-            dw=pd.read_csv('Biproduct Algeria.csv')
-            dw.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Animal and Vegetable Bi Products')
-            st.dataframe(dw)
+        db=pd.read_csv('Vegetable Algeria.csv')
+        db.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        db.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Vegetable Products')
+        st.dataframe(db)
+        st.markdown('---')
 
-#--------------------------------------------------------------------------------------------------    
-        if option4=='Foodstuffs':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.tail(47), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.tail(47), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.tail(47), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.tail(47), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
+        dc=pd.read_csv('Biproduct Algeria.csv')
+        dc.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dc.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal and Vegetable Bi Products')
+        st.dataframe(dc)
+        st.markdown('---')
 
-            dx=pd.read_csv('Foodstuff Algeria.csv')
-            dx.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Foodstuffs Products')
-            st.dataframe(dx)
-#------------------------------------------------------------------------------------------
-
-    if option1=='Egypt':
+        dd=pd.read_csv('Foodstuff Algeria.csv')
+        dd.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dd.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Foodstuffs')
+        st.dataframe(dd)
+        st.markdown('---')
+#************************************************************************************************************************************************
+#**************************************************************************************************************************************************
+if option1=='Egypt':  
+    st.markdown("<h2 style='text-align: center'><u>Egypt</u></h2>", unsafe_allow_html=True) 
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
         df=pd.read_csv('Egypt Import.csv')
         df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
         df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
         st.dataframe(df)
 
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
         
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Egypt Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
 
         if option3== '2019':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value', color='Trade Value Growth(%)',color_continuous_scale='RdBu')
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
-        
-        if option3=='Previous Year':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 1', color='TradeValue Growth(%)Pre 1',color_continuous_scale='RdBu')
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(34), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[35:112], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:134], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(34), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[35:112], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:134], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option3=='Previous 3 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 3', color='TradeValue Growth(%)Pre 3',color_continuous_scale='RdBu')
+
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(34), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[35:112], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:134], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        if option3=='Previous 5 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 5', color='TradeValue Growth(%)Pre 5',color_continuous_scale='RdBu')
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(34), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[35:112], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[112:134], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        
-  #---------------------------------------------------------------------------------------------      
-        
-        if option4=='Animal Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.head(36), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
+    if option2=='Tariff':
+        st.markdown("<h3 style='text-align: center'>[Tariff]</h3>", unsafe_allow_html=True)
 
-            dt=pd.read_csv('Animal Egypt.csv')
-            dt.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Animal Products')
-            st.dataframe(dt)
-#-----------------------------------------------------------------------------------
+        da=pd.read_csv('Animal Egypt.csv')
+        da.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        da.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal Products')
+        st.dataframe(da)
+        st.markdown('---')
 
-        if option4=='Vegetable Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[37:114], x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
+        db=pd.read_csv('Vegetable Egypt.csv')
+        db.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        db.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Vegetable Products')
+        st.dataframe(db)
+        st.markdown('---')
 
-            dv=pd.read_csv('Vegetable Egypt.csv')
-            dv.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Vegetable Products')
-            st.dataframe(dv)
-#---------------------------------------------------------------------------------------
+        dc=pd.read_csv('Biproduct Egypt.csv')
+        dc.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dc.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal and Vegetable Bi Products')
+        st.dataframe(dc)
+        st.markdown('---')
 
-        if option4=='Animal and Vegetable Bi Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 1',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 3',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[114:134], x='HS2' ,y='Trade Value Previous 5',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-
-            dw=pd.read_csv('Biproduct Egypt.csv')
-            dw.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Animal and Vegetable Bi Products')
-            st.dataframe(dw)
-
-#--------------------------------------------------------------------------------------------------    
-        if option4=='Foodstuffs':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.tail(53), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-
-            dx=pd.read_csv('Foodstuf Egypt.csv')
-            dx.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Foodstuffs Products')
-            st.dataframe(dx)
-#-------------------------------------------------------------------------------------------------
-    if option1=='Sudan':
+        dd=pd.read_csv('Foodstuf Egypt.csv')
+        dd.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dd.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Foodstuffs')
+        st.dataframe(dd)
+        st.markdown('---')
+#**********************************************************************************************************************************************
+#************************************************************************************************************************************************
+if option1=='Sudan':   
+    st.markdown("<h2 style='text-align: center'><u>Sudan</u></h2>", unsafe_allow_html=True)
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
         df=pd.read_csv('Sudan Import.csv')
         df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
         df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
         st.dataframe(df)
 
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
         
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Sudan Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
 
         if option3== '2019':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value', color='Trade Value Growth(%)',color_continuous_scale='RdBu')
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
-        
-        if option3=='Previous Year':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 1', color='TradeValue Growth(%)Pre 1',color_continuous_scale='RdBu')
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(22), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[23:71], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[71:77], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(26), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(22), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[23:71], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[71:77], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(26), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option3=='Previous 3 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 3', color='TradeValue Growth(%)Pre 3',color_continuous_scale='RdBu')
+
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(22), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[23:71], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[71:77], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(26), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-        if option3=='Previous 5 Years':
-            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2'], values='Trade Value Previous 5', color='TradeValue Growth(%)Pre 5',color_continuous_scale='RdBu')
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
             fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
             st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(22), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[23:71], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[71:77], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(26), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+    if option2=='Tariff':
+        st.markdown("<h3 style='text-align: center'>[Tariff]</h3>", unsafe_allow_html=True)
+
+        da=pd.read_csv('Animal Sudan.csv')
+        da.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        da.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal Products')
+        st.dataframe(da)
+        st.markdown('---')
+
+        db=pd.read_csv('Vegetable Sudan.csv')
+        db.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        db.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Vegetable Products')
+        st.dataframe(db)
+        st.markdown('---')
+
+        dc=pd.read_csv('Biproduct Sudan.csv')
+        dc.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dc.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal and Vegetable Bi Products')
+        st.dataframe(dc)
+        st.markdown('---')
+
+        dd=pd.read_csv('Foodstuf Sudan.csv')
+        dd.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dd.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Foodstuffs')
+        st.dataframe(dd)
+        st.markdown('---')
+#********************************************************************************************************************************************
+#***************************************************************************************************************************************************
+if option1=='Tunisia':
+    st.markdown("<h2 style='text-align: center'><u>Tunisia</u></h2>", unsafe_allow_html=True)   
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Tunisia Import.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
+
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(37), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[38:108], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[108:129], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
         
-  #---------------------------------------------------------------------------------------------      
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(37), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[38:108], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[108:129], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
         
-        if option4=='Animal Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.head(26), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Animal Products'))
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(37), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[38:108], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[108:129], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-            dt=pd.read_csv('Animal Sudan.csv')
-            dt.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Animal Products')
-            st.dataframe(dt)
-#-----------------------------------------------------------------------------------
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(37), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[38:108], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[108:129], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(52), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Tunisia Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
 
-        if option4=='Vegetable Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[27:91], x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Vegetable Products'))
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(25), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[26:91], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:110], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-            dv=pd.read_csv('Vegetable Sudan.csv')
-            dv.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Vegetable Products')
-            st.dataframe(dv)
-#---------------------------------------------------------------------------------------
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(25), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[26:91], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:110], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
 
-        if option4=='Animal and Vegetable Bi Product':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 1',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 3',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.iloc[91:108], x='HS2' ,y='Trade Value Previous 5',width =800,  height=600 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(25), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[26:91], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:110], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-            dw=pd.read_csv('Biproduct Sudan.csv')
-            dw.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Animal and Vegetable Bi Products')
-            st.dataframe(dw)
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(25), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[26:91], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[91:110], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
 
-#--------------------------------------------------------------------------------------------------    
-        if option4=='Foodstuffs':
-            if option3=='2019':
-                st.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous Year':
-                st.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 1',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if option3=='Previous 3 Years':
-                st.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 3',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
-            if  option3=='Previous 5 Years':
-                st.plotly_chart(px.histogram(df.tail(46), x='HS2' ,y='Trade Value Previous 5',width =1000,  height=900 , template='plotly_dark',title='Foodstuffs'))
+    if option2=='Tariff':
+        st.markdown("<h3 style='text-align: center'>[Tariff]</h3>", unsafe_allow_html=True)
 
-            dx=pd.read_csv('Foodstuf Sudan.csv')
-            dx.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
-            st.markdown('Tariff on Foodstuffs Products')
-            st.dataframe(dx)
+        da=pd.read_csv('Animal Tunisia.csv')
+        da.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        da.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal Products')
+        st.dataframe(da)
+        st.markdown('---')
 
+        db=pd.read_csv('Vegetable Tunisia.csv')
+        db.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        db.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Vegetable Products')
+        st.dataframe(db)
+        st.markdown('---')
+
+        dc=pd.read_csv('Biproduct Tunisia.csv')
+        dc.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dc.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Animal and Vegetable Bi Products')
+        st.dataframe(dc)
+        st.markdown('---')
+
+        dd=pd.read_csv('Foodstuff Tunisia.csv')
+        dd.drop(columns=['Section ID','HS2 ID','HS4 ID','HS6 ID' ], inplace=True)
+        dd.rename(columns={'Tariff':'Tariff(%)'},inplace=True)
+        st.markdown('Tariff on Foodstuffs')
+        st.dataframe(dd)
+        st.markdown('---')
+#**********************************************************************************************************************************************
+#***********************************************************************************************************************************************
+if option1=='Libya':   
+    st.markdown("<h2 style='text-align: center'><u>Libya</u></h2>", unsafe_allow_html=True)
+    if option2== 'Import':
+        st.markdown("<h3 style='text-align: center'>[Imports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Libya Import.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
+
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='rdbu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(32), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[33:103], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[103:120], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(49), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(32), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[33:103], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[103:120], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(49), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(32), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[33:103], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[103:120], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(49), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(32), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[33:103], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[103:120], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(49), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+    if option2== 'Export':
+        st.markdown("<h3 style='text-align: center'>[Exports]</h3>", unsafe_allow_html=True)
+        df=pd.read_csv('Libya Export.csv')
+        df.drop(columns=['Section ID','HS2 ID','HS4 ID'], inplace=True)
+        df.rename(columns={'Trade Value Growth':'Trade Value Growth(%)','Trade Value Growth 1':'TradeValue Growth(%)Pre 1','Trade Value Growth 3':'TradeValue Growth(%)Pre 3','Trade Value Growth 5':'TradeValue Growth(%)Pre 5'},inplace=True)
+        st.dataframe(df)
+
+        if option3== '2019':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value', color='Trade Value',hover_data=['Trade Value Growth(%)'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(10), x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[11:28], x='HS2' ,y='Trade Value',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[28:31], x='HS2' ,y='Trade Value',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(20), x='HS2' ,y='Trade Value',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 1', color='Trade Value Previous 1',hover_data=['TradeValue Growth(%)Pre 1'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(10), x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[11:28], x='HS2' ,y='Trade Value Previous 1',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[28:31], x='HS2' ,y='Trade Value Previous 1',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(20), x='HS2' ,y='Trade Value Previous 1',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+
+        if option3=='2016-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 3', color='Trade Value Previous 3',hover_data=['TradeValue Growth(%)Pre 3'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(10), x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[11:28], x='HS2' ,y='Trade Value Previous 3',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[28:31], x='HS2' ,y='Trade Value Previous 3',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(20), x='HS2' ,y='Trade Value Previous 3',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+
+        if option3=='2014-2018':
+            fig=px.treemap(df, path=[px.Constant('PRODUCTS'),'Section', 'HS2','HS4'], values='Trade Value Previous 5', color='Trade Value Previous 5',hover_data=['TradeValue Growth(%)Pre 5'],color_continuous_scale='RdBu')
+            fig.update_layout(margin= dict(t=50, l=25, r=25, b=25), width =1100,  height=650)
+            st.plotly_chart(fig)
+            col1, col2=st.columns(2)
+            col1.plotly_chart(px.histogram(df.head(10), x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Animal Products'))
+            col2.plotly_chart(px.histogram(df.iloc[11:28], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
+            col1.plotly_chart(px.histogram(df.iloc[28:31], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
+            col2.plotly_chart(px.histogram(df.tail(20), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs')) 
+#------------------------------------------------------------------------------------------------------------------------------------------------
+#**********************************************************************************************************************************************
+#------------------------------------------------------------------------------------------------------------------------------------------------
+#***********************************************************************************************************************************************

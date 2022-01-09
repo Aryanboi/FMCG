@@ -32,7 +32,7 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10502,Pig Hair,2019,496547,0.506422547,166927,329620,576194,470950,50.64225472,166927,-13.82294852,-79647,5.435184202,25597
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10504,Animal Organs,2019,77901037,-0.044428339,-3621930,81522967,51228990,65478739,-4.442833883,-3621930,52.06436239,26672047,18.97149852,12422298
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10505,Bird Feathers and Skins,2019,83468,-0.496568113,-82330,165798,116115,44492,-49.6568113,-82330,-28.11609181,-32647,87.60226558,38976
-1,Animal Products,105,Animal originated products; not elsewhere specified or included,10506,Processed Bones,2019,3368,-0.735905277,-9385,12753,0,92,-73.59052772,-9385,100,3368,3560.869565,3276
+1,Animal Products,105,Animal originated products; not elsewhere specified or included,10506,Processed Bones,2019,3368,-0.735905277,-9385,12753,0.1,92,-73.59052772,-9385,100,3368,3560.869565,3276
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10508,Coral and Shells,2019,9577,1.405676966,5596,3981,4782,9751,140.5676966,5596,100.2718528,4795,-1.784432366,-174
 1,Animal Products,105,Animal originated products; not elsewhere specified or included,10511,Other Inedible Animal Products,2019,3084998,-0.251457717,-1036343,4121341,3236980,2158817,-25.14577173,-1036343,-4.69517884,-151982,42.90224693,926181
 2,Vegetable Products,206,Trees and other live plants,20601,Bulbs and Roots,2019,413735,-0.260220503,-145533,559268,459703,567458,-26.02205025,-145533,-9.999499677,-45968,-27.08975818,-153723
@@ -96,7 +96,7 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 2,Vegetable Products,211,"Products of the milling industry; malt, starches, inulin, wheat gluten",21109,Wheat Gluten,2019,165868,-0.499876377,-165786,331654,345513,1054602,-49.98763772,-165786,-51.99370212,-179645,-84.27198128,-888734
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21201,Soybeans,2019,8626543,-0.445765895,-6938257,15564800,35417711,68188087,-44.57658948,-6938257,-75.64342032,-26791168,-87.34890011,-59561544
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21202,Ground Nuts,2019,4622238,0.830922136,2097697,2524541,994575,91305,83.09221359,2097697,364.7450419,3627663,4962.414983,4530933
-2,Vegetable Products,212,Oil seeds and oleaginous fruits,21203,Copra,2019,197320,0.629128137,76200,121120,0,27717,62.91281374,76200,100,197320,611.9096583,169603
+2,Vegetable Products,212,Oil seeds and oleaginous fruits,21203,Copra,2019,197320,0.629128137,76200,121120,0.1,27717,62.91281374,76200,100,197320,611.9096583,169603
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21204,Linseed,2019,436369,-0.414284736,-308650,745019,697087,1074996,-41.42847364,-308650,-37.40107045,-260718,-59.40738384,-638627
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21205,Rapeseed,2019,934387,0.648079654,367432,566955,628906,479113,64.80796536,367432,48.57339571,305481,95.02434707,455274
 2,Vegetable Products,212,Oil seeds and oleaginous fruits,21206,Sunflower Seeds,2019,1666402,-0.416043574,-1187239,2853641,1483932,11346104,-41.60435738,-1187239,12.29638555,182470,-85.3130026,-9679702
@@ -112,7 +112,7 @@ Section ID,Section,HS2 ID,HS2,HS4 ID,HS4,Year,Trade Value,Trade Value Growth,Tra
 2,Vegetable Products,214,Vegetable plaiting materials,21401,Vegetable Plaiting Materials,2019,567788,-0.021739954,-12618,580406,323220,553885,-2.173995445,-12618,75.66610977,244568,2.510087834,13903
 2,Vegetable Products,214,Vegetable plaiting materials,21404,Other Vegetable Products,2019,935904,-0.097302626,-100882,1036786,976935,628539,-9.730262561,-100882,-4.199972363,-41031,48.90150015,307365
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31502,"Bovine, Sheep, and Goat Fat",2019,9185226,-0.09995567,-1020078,10205304,5439134,8922516,-9.995567011,-1020078,68.87294926,3746092,2.944348881,262710
-3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31503,Lard,2019,9552,0.364571429,2552,7000,0,819,36.45714286,2552,100,9552,1066.300366,8733
+3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31503,Lard,2019,9552,0.364571429,2552,7000,0.1,819,36.45714286,2552,100,9552,1066.300366,8733
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31504,Fish Oil,2019,776633,-0.85470204,-4568473,5345106,753822,7905007,-85.47020396,-4568473,3.026045937,22811,-90.17542932,-7128374
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31505,Wool Grease,2019,729731,0.224520583,133799,595932,906455,994219,22.45205829,133799,-19.49616914,-176724,-26.60258957,-264488
 3,Animal and Vegetable Bi-Products,315,Animal or vegetable fats and oils and their cleavage products,31507,Soybean Oil,2019,387305975,0.021990107,8333642,378972333,308458602,370729544,2.19901066,8333642,25.56173583,78847373,4.471300243,16576431
