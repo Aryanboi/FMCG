@@ -3,13 +3,14 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title='Trade Data Presentation', page_icon='LV.jpg')
+st.set_page_config(page_title='NA Countries Trade Data Representation', page_icon='LV.jpg')
 sidebar= st.sidebar
+st.write('*based on latest data available online')
 st.markdown("<h1 style='text-align: center'><u>Trade of FMCG Products in</u></h1>", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center'><u>'Northern African Countries'</u></h1>", unsafe_allow_html=True) 
 sidebar.image('Lever Bridge.jpeg')
 option1= st.selectbox('Select the Country', ('Morocco','Algeria','Egypt','Sudan','Tunisia','Libya'))
-option2= st.radio('Select',('Import','Export','Tariff'))
+option2= st.radio('Select',('Import','Export','Tariff','Service Trade'))
 option3= sidebar.radio('Select',('2019','2018','2016-2018', '2014-2018'))
 
 with st.spinner('| Just a sec |'):
@@ -141,6 +142,21 @@ with st.spinner('| Just a sec |'):
             st.markdown('Tariff on Foodstuffs')
             st.dataframe(dd)
             st.markdown('---')
+
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Morocco serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2019')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Morocco serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2019')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))         
     #***********************************************************************************************************************************************
     #***********************************************************************************************************************************************
     if option1=='Algeria':  
@@ -271,6 +287,21 @@ with st.spinner('| Just a sec |'):
             st.markdown('Tariff on Foodstuffs')
             st.dataframe(dd)
             st.markdown('---')
+
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Algeria serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2016')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Algeria serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2016')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))    
     #************************************************************************************************************************************************
     #**************************************************************************************************************************************************
     if option1=='Egypt':  
@@ -401,6 +432,21 @@ with st.spinner('| Just a sec |'):
             st.markdown('Tariff on Foodstuffs')
             st.dataframe(dd)
             st.markdown('---')
+
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Egypt serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2019')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Egypt serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2019')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
     #**********************************************************************************************************************************************
     #************************************************************************************************************************************************
     if option1=='Sudan':   
@@ -531,6 +577,21 @@ with st.spinner('| Just a sec |'):
             st.markdown('Tariff on Foodstuffs')
             st.dataframe(dd)
             st.markdown('---')
+        
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Sudan serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2015')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Sudan serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2015')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
     #********************************************************************************************************************************************
     #***************************************************************************************************************************************************
     if option1=='Tunisia':
@@ -661,6 +722,21 @@ with st.spinner('| Just a sec |'):
             st.markdown('Tariff on Foodstuffs')
             st.dataframe(dd)
             st.markdown('---')
+        
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Tunisia serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2018')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Tunisia serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2018')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
     #**********************************************************************************************************************************************
     #***********************************************************************************************************************************************
     if option1=='Libya':   
@@ -760,6 +836,24 @@ with st.spinner('| Just a sec |'):
                 col2.plotly_chart(px.histogram(df.iloc[11:28], x='HS2' ,y='Trade Value Previous 5',width =650,  height=650 , template='plotly_dark',title='Vegetable Products'))
                 col1.plotly_chart(px.histogram(df.iloc[28:31], x='HS2' ,y='Trade Value Previous 5',width =500,  height=550 , template='plotly_dark',title='Animal and Vegetable Bi Product'))
                 col2.plotly_chart(px.histogram(df.tail(20), x='HS2' ,y='Trade Value Previous 5',width =700,  height=700 , template='plotly_dark',title='Foodstuffs'))
+        
+        if option2=='Tariff':
+            st.write('No Data Available')
+
+        if option2== 'Service Trade':
+            st.markdown("<h3 style='text-align: center'>[Service Trade]</h3>", unsafe_allow_html=True)
+            
+            dz=pd.read_csv('Libya serviceimports.csv')
+            dz.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Imports 2018')
+            st.dataframe(dz)
+            st.plotly_chart(px.histogram(dz, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
+            
+            dy=pd.read_csv('Libya serviceexports.csv')
+            dy.drop(columns=['Parent Service ID','Service ID' ], inplace=True)
+            st.markdown('Service Exports 2018')
+            st.dataframe(dy)
+            st.plotly_chart(px.histogram(dy, x='Service' ,y='Service Value',width =650,  height=650 , template='plotly_dark'))
     st.markdown('---') 
     #------------------------------------------------------------------------------------------------------------------------------------------------
     #**********************************************************************************************************************************************
